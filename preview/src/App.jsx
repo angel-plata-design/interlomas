@@ -130,7 +130,7 @@ export default function App() {
                     <div className="flex items-center">
                         <div className={isScrolled ? 'logo-glass-scrolled' : 'logo-glass'}>
                             <img
-                                src={isScrolled ? 'interlomas_logo_color.svg' : 'interlomas_logo_color.svg'}
+                                src={isScrolled ? 'interlomas_logo_color.svg' : 'interlomas_logo_blanco.svg'}
                                 alt="Interlomas"
                                 className="h-6 md:h-8 w-auto transition-all duration-500"
                             />
@@ -467,55 +467,55 @@ export default function App() {
             </section>
 
             {/* --- FOOTER --- */}
-            <footer className="bg-white pt-24 pb-12 border-t border-gray-100">
-                <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 border-b border-gray-100 pb-20">
+            <footer className="bg-[#1a1b38] pt-24 pb-12 border-t border-white/10">
+                <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 border-b border-white/10 pb-20">
                     <div className="md:col-span-2">
                         <img src="interlomas_logo_blanco.svg" alt="Interlomas" className="h-8 md:h-10 w-auto mb-6" />
-                        <p className="text-gray-500 font-light text-lg mb-8 max-w-md leading-relaxed">
+                        <p className="text-white/60 font-light text-lg mb-8 max-w-md leading-relaxed">
                             Desarrollando los entornos más extraordinarios para el estándar más exigente. Un nivel de exclusividad que debes experimentar.
                         </p>
                         <div className="flex space-x-6">
-                            <a href="#" className="text-gray-400 hover:text-[#1a1b38] transition-colors"><Facebook strokeWidth={1.5} size={22} /></a>
-                            <a href="#" className="text-gray-400 hover:text-[#1a1b38] transition-colors"><Instagram strokeWidth={1.5} size={22} /></a>
+                            <a href="#" className="text-white/40 hover:text-white transition-colors"><Facebook strokeWidth={1.5} size={22} /></a>
+                            <a href="#" className="text-white/40 hover:text-white transition-colors"><Instagram strokeWidth={1.5} size={22} /></a>
                         </div>
                     </div>
 
                     <div>
-                        <h4 className="text-[#1a1b38] font-medium tracking-[0.15em] text-xs uppercase mb-8">Navegación</h4>
+                        <h4 className="text-white/50 font-medium tracking-[0.15em] text-xs uppercase mb-8">Navegación</h4>
                         <ul className="space-y-4">
-                            <li><a href="#concepto" className="text-gray-500 font-light hover:text-[#1a1b38] transition-colors">Nuestro Concepto</a></li>
-                            <li><a href="#amenidades" className="text-gray-500 font-light hover:text-[#1a1b38] transition-colors">Experiencias</a></li>
-                            <li><a href="#seguridad" className="text-gray-500 font-light hover:text-[#1a1b38] transition-colors">Tranquilidad 24/7</a></li>
-                            <li><a href="#contacto" className="text-gray-500 font-light hover:text-[#1a1b38] transition-colors">Agendar Recorrido</a></li>
+                            <li><a href="#concepto" className="text-white/60 font-light hover:text-white transition-colors">Nuestro Concepto</a></li>
+                            <li><a href="#amenidades" className="text-white/60 font-light hover:text-white transition-colors">Experiencias</a></li>
+                            <li><a href="#seguridad" className="text-white/60 font-light hover:text-white transition-colors">Tranquilidad 24/7</a></li>
+                            <li><a href="#contacto" className="text-white/60 font-light hover:text-white transition-colors">Agendar Recorrido</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-[#1a1b38] font-medium tracking-[0.15em] text-xs uppercase mb-8">Contacto</h4>
+                        <h4 className="text-white/50 font-medium tracking-[0.15em] text-xs uppercase mb-8">Contacto</h4>
                         <ul className="space-y-6">
                             <li className="flex items-start">
-                                <MapPin className="text-[#1a1b38] shrink-0 mr-4 mt-0.5" strokeWidth={1} size={20} />
-                                <span className="text-gray-500 font-light text-sm">Av. Interlomas 123, Zona Exclusiva.</span>
+                                <MapPin className="text-white/40 shrink-0 mr-4 mt-0.5" strokeWidth={1} size={20} />
+                                <span className="text-white/60 font-light text-sm">Av. Interlomas 123, Zona Exclusiva.</span>
                             </li>
                             <li className="flex items-center">
-                                <Phone className="text-[#1a1b38] shrink-0 mr-4" strokeWidth={1} size={20} />
-                                <span className="text-gray-500 font-light text-sm">+52 (55) 1234 5678</span>
+                                <Phone className="text-white/40 shrink-0 mr-4" strokeWidth={1} size={20} />
+                                <span className="text-white/60 font-light text-sm">+52 (55) 1234 5678</span>
                             </li>
                             <li className="flex items-center">
-                                <Mail className="text-[#1a1b38] shrink-0 mr-4" strokeWidth={1} size={20} />
-                                <span className="text-gray-500 font-light text-sm">hola@interlomas.com</span>
+                                <Mail className="text-white/40 shrink-0 mr-4" strokeWidth={1} size={20} />
+                                <span className="text-white/60 font-light text-sm">hola@interlomas.com</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p className="text-gray-400 font-light text-xs mb-4 md:mb-0">
+                    <p className="text-white/30 font-light text-xs mb-4 md:mb-0">
                         &copy; {new Date().getFullYear()} Interlomas Residencial. Todos los derechos reservados.
                     </p>
-                    <div className="flex space-x-6 text-xs text-gray-400 font-light">
-                        <a href="#" className="hover:text-[#1a1b38] transition-colors">Aviso de Privacidad</a>
-                        <a href="#" className="hover:text-[#1a1b38] transition-colors">Términos de Uso</a>
+                    <div className="flex space-x-6 text-xs text-white/30 font-light">
+                        <a href="#" className="hover:text-white/70 transition-colors">Aviso de Privacidad</a>
+                        <a href="#" className="hover:text-white/70 transition-colors">Términos de Uso</a>
                     </div>
                 </div>
             </footer>
