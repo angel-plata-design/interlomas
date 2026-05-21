@@ -107,13 +107,13 @@ export default function App() {
       `}} />
 
             {/* --- NAVBAR --- */}
-            <nav className={`fixed w-full z-50 transition-all duration-500 border-b ${isScrolled ? 'bg-white border-gray-100 py-4 shadow-sm' : 'bg-transparent border-transparent py-8'}`}>
+            <nav className={`fixed w-full z-50 transition-all duration-500 border-b ${isScrolled ? 'bg-white border-gray-100 py-4 shadow-sm' : 'bg-black/30 border-transparent py-6 backdrop-blur-sm'}`}>
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
                     <div className="flex items-center">
                         <img
                             src={isScrolled ? 'interlomas_logo_color.svg' : 'interlomas_logo_blanco.svg'}
                             alt="Interlomas"
-                            className="h-6 md:h-8 w-auto transition-all duration-500"
+                            className="h-8 md:h-10 w-auto transition-all duration-500"
                         />
                     </div>
 
