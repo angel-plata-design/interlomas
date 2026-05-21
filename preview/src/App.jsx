@@ -104,37 +104,17 @@ export default function App() {
         .animate-slide-up { animation: slideUp 1s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        .logo-glass {
-          background: rgba(255, 255, 255, 0.18);
-          backdrop-filter: blur(18px) saturate(180%);
-          -webkit-backdrop-filter: blur(18px) saturate(180%);
-          border: 1px solid rgba(255, 255, 255, 0.35);
-          border-radius: 14px;
-          padding: 8px 20px;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.5);
-          transition: all 0.5s ease;
-        }
-        .logo-glass-scrolled {
-          background: transparent;
-          backdrop-filter: none;
-          -webkit-backdrop-filter: none;
-          border: none;
-          box-shadow: none;
-          padding: 0;
-        }
       `}} />
 
             {/* --- NAVBAR --- */}
             <nav className={`fixed w-full z-50 transition-all duration-500 border-b ${isScrolled ? 'bg-white border-gray-100 py-4 shadow-sm' : 'bg-transparent border-transparent py-8'}`}>
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
                     <div className="flex items-center">
-                        <div className={isScrolled ? 'logo-glass-scrolled' : 'logo-glass'}>
-                            <img
-                                src={isScrolled ? 'interlomas_logo_color.svg' : 'interlomas_logo_blanco.svg'}
-                                alt="Interlomas"
-                                className="h-6 md:h-8 w-auto transition-all duration-500"
-                            />
-                        </div>
+                        <img
+                            src={isScrolled ? 'interlomas_logo_color.svg' : 'interlomas_logo_blanco.svg'}
+                            alt="Interlomas"
+                            className="h-6 md:h-8 w-auto transition-all duration-500"
+                        />
                     </div>
 
                     {/* Desktop Menu */}
@@ -178,8 +158,10 @@ export default function App() {
                     ></div>
                 ))}
 
-                {/* Subtle dark gradient only at bottom for white text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1b38]/80 via-[#1a1b38]/10 to-transparent pointer-events-none"></div>
+                {/* Gradient at TOP for navbar/header contrast */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent pointer-events-none z-[1]"></div>
+                {/* Gradient at BOTTOM for hero text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1b38]/80 via-[#1a1b38]/10 to-transparent pointer-events-none z-[1]"></div>
 
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
                     <div className="max-w-3xl animate-slide-up">
