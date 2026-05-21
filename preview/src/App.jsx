@@ -18,7 +18,8 @@ import {
     Phone,
     Facebook,
     Instagram,
-    ArrowRight
+    ArrowRight,
+    Download
 } from 'lucide-react';
 
 const heroImages = [
@@ -27,10 +28,26 @@ const heroImages = [
     'hero_img3.jpg'
 ];
 
+const lotesDemo = [
+    { id: 1, numeroExtra: 'A-01', status: 'disponible', m2: 153, frente: 9, fondo: 17, medidas: '9 x 17 m' },
+    { id: 2, numeroExtra: 'A-02', status: 'no disponible', m2: 153, frente: 9, fondo: 17, medidas: '9 x 17 m' },
+    { id: 3, numeroExtra: 'A-03', status: 'disponible', m2: 136, frente: 8, fondo: 17, medidas: '8 x 17 m' },
+    { id: 4, numeroExtra: 'A-04', status: 'disponible', m2: 136, frente: 8, fondo: 17, medidas: '8 x 17 m' },
+    { id: 5, numeroExtra: 'A-05', status: 'no disponible', m2: 136, frente: 8, fondo: 17, medidas: '8 x 17 m' },
+    { id: 6, numeroExtra: 'A-06', status: 'disponible', m2: 153, frente: 9, fondo: 17, medidas: '9 x 17 m' },
+    { id: 7, numeroExtra: 'A-07', status: 'disponible', m2: 126.3, frente: 7, fondo: 18, medidas: '7 x 18 m' },
+    { id: 8, numeroExtra: 'A-08', status: 'no disponible', m2: 126.3, frente: 7, fondo: 18, medidas: '7 x 18 m' },
+    { id: 9, numeroExtra: 'A-09', status: 'disponible', m2: 153, frente: 9, fondo: 17, medidas: '9 x 17 m' },
+    { id: 10, numeroExtra: 'A-10', status: 'disponible', m2: 153, frente: 9, fondo: 17, medidas: '9 x 17 m' },
+    { id: 11, numeroExtra: 'A-11', status: 'no disponible', m2: 136, frente: 8, fondo: 17, medidas: '8 x 17 m' },
+    { id: 12, numeroExtra: 'A-12', status: 'disponible', m2: 136, frente: 8, fondo: 17, medidas: '8 x 17 m' }
+];
+
 export default function App() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [selectedLote, setSelectedLote] = useState(lotesDemo[0]);
 
     const [formData, setFormData] = useState({ nombre: '', email: '', telefono: '' });
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -49,6 +66,16 @@ export default function App() {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleExportPdf = () => {
+        window.print();
+    };
+
+    const getLoteStatusClass = (status) => {
+        return status === 'disponible'
+            ? 'border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+            : 'border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100';
     };
 
     useEffect(() => {
@@ -77,17 +104,37 @@ export default function App() {
         .animate-slide-up { animation: slideUp 1s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-glass {
+          background: rgba(255, 255, 255, 0.18);
+          backdrop-filter: blur(18px) saturate(180%);
+          -webkit-backdrop-filter: blur(18px) saturate(180%);
+          border: 1px solid rgba(255, 255, 255, 0.35);
+          border-radius: 14px;
+          padding: 8px 20px;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.5);
+          transition: all 0.5s ease;
+        }
+        .logo-glass-scrolled {
+          background: transparent;
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          border: none;
+          box-shadow: none;
+          padding: 0;
+        }
       `}} />
 
             {/* --- NAVBAR --- */}
             <nav className={`fixed w-full z-50 transition-all duration-500 border-b ${isScrolled ? 'bg-white border-gray-100 py-4 shadow-sm' : 'bg-transparent border-transparent py-8'}`}>
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
                     <div className="flex items-center">
-                        <img
-                            src={isScrolled ? 'interlomas_logo_color.svg' : 'interlomas_logo_blanco.svg'}
-                            alt="Interlomas"
-                            className="h-6 md:h-8 w-auto transition-opacity duration-500"
-                        />
+                        <div className={isScrolled ? 'logo-glass-scrolled' : 'logo-glass'}>
+                            <img
+                                src={isScrolled ? 'interlomas_logo_color.svg' : 'interlomas_logo_color.svg'}
+                                alt="Interlomas"
+                                className="h-6 md:h-8 w-auto transition-all duration-500"
+                            />
+                        </div>
                     </div>
 
                     {/* Desktop Menu */}
@@ -353,11 +400,77 @@ export default function App() {
                 </div>
             </section>
 
+            <section id="lotes" className="py-24 md:py-32 bg-[#F8F7F5]">
+                <div className="max-w-7xl mx-auto px-6 lg:px-12">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
+                        <div>
+                            <h2 className="text-gray-400 tracking-[0.2em] uppercase text-xs mb-4 font-medium">Disponibilidad</h2>
+                            <h3 className="text-4xl md:text-5xl font-light text-[#1a1b38] leading-[1.2]">Mapa de lotes interactivo (prueba)</h3>
+                        </div>
+                        <button onClick={handleExportPdf} className="inline-flex items-center gap-3 border border-[#1a1b38] text-[#1a1b38] px-6 py-3 text-xs tracking-[0.2em] uppercase hover:bg-[#1a1b38] hover:text-white transition-colors">
+                            <Download size={16} strokeWidth={1.2} />
+                            Exportar PDF
+                        </button>
+                    </div>
+
+                    <div className="grid lg:grid-cols-12 gap-8">
+                        <div className="lg:col-span-8 bg-white border border-gray-100 p-6 md:p-8 shadow-sm">
+                            <div className="relative overflow-hidden border border-gray-100">
+                                <img src="hero_img1.jpg" alt="Plano de lotes Interlomas" className="w-full h-[500px] object-cover" />
+                                <div className="absolute inset-0 grid grid-cols-4 gap-3 p-4 md:p-6">
+                                    {lotesDemo.map((lote) => (
+                                        <button
+                                            key={lote.id}
+                                            onClick={() => setSelectedLote(lote)}
+                                            className={`relative border text-left p-2 transition-colors ${getLoteStatusClass(lote.status)} ${selectedLote.id === lote.id ? 'ring-2 ring-[#1a1b38]' : ''}`}
+                                            title={`Lote ${lote.id} · ${lote.status}`}
+                                        >
+                                            <p className="text-[10px] uppercase tracking-[0.15em] font-medium">Lote {lote.id}</p>
+                                            <p className="text-xs font-semibold">{lote.numeroExtra}</p>
+                                            <p className="text-[10px] mt-1 uppercase">{lote.status}</p>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-4">Hover/clic para ver disponibilidad y seleccionar un lote.</p>
+                        </div>
+
+                        <div className="lg:col-span-4 bg-white border border-gray-100 p-6 md:p-8 shadow-sm h-fit">
+                            <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-3">Detalle completo</p>
+                            <h4 className="text-2xl font-light text-[#1a1b38] mb-6">Lote {selectedLote.id} · {selectedLote.numeroExtra}</h4>
+
+                            <div className="space-y-4 text-sm text-gray-600">
+                                <div className="flex justify-between border-b border-gray-100 pb-3">
+                                    <span className="uppercase tracking-[0.15em] text-[10px] text-gray-400">Estado</span>
+                                    <span className={selectedLote.status === 'disponible' ? 'text-emerald-700 font-medium uppercase' : 'text-rose-700 font-medium uppercase'}>{selectedLote.status}</span>
+                                </div>
+                                <div className="flex justify-between border-b border-gray-100 pb-3">
+                                    <span className="uppercase tracking-[0.15em] text-[10px] text-gray-400">Superficie</span>
+                                    <span className="text-[#1a1b38] font-medium">{selectedLote.m2} m²</span>
+                                </div>
+                                <div className="flex justify-between border-b border-gray-100 pb-3">
+                                    <span className="uppercase tracking-[0.15em] text-[10px] text-gray-400">Frente</span>
+                                    <span className="text-[#1a1b38] font-medium">{selectedLote.frente} m</span>
+                                </div>
+                                <div className="flex justify-between border-b border-gray-100 pb-3">
+                                    <span className="uppercase tracking-[0.15em] text-[10px] text-gray-400">Fondo</span>
+                                    <span className="text-[#1a1b38] font-medium">{selectedLote.fondo} m</span>
+                                </div>
+                                <div className="flex justify-between border-b border-gray-100 pb-3">
+                                    <span className="uppercase tracking-[0.15em] text-[10px] text-gray-400">Medidas</span>
+                                    <span className="text-[#1a1b38] font-medium">{selectedLote.medidas}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* --- FOOTER --- */}
             <footer className="bg-white pt-24 pb-12 border-t border-gray-100">
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 border-b border-gray-100 pb-20">
                     <div className="md:col-span-2">
-                        <img src="interlomas_logo_color.svg" alt="Interlomas" className="h-8 md:h-10 w-auto mb-6" />
+                        <img src="interlomas_logo_blanco.svg" alt="Interlomas" className="h-8 md:h-10 w-auto mb-6" />
                         <p className="text-gray-500 font-light text-lg mb-8 max-w-md leading-relaxed">
                             Desarrollando los entornos más extraordinarios para el estándar más exigente. Un nivel de exclusividad que debes experimentar.
                         </p>
